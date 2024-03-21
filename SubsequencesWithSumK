@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void printSum(int ind,vector<int> ds,int sum,int k,vector<int> &arr){
+    if(ind==arr.size()){
+        if(sum==k){
+            for(auto it:ds){
+                cout<<it<<" ";
+            }
+            cout<<endl;
+        }
+        return ;
+    }
+
+    //TAKE 
+    ds.push_back(arr[ind]);
+    sum+=arr[ind];
+
+    printSum(ind+1,ds,sum,k,arr);
+
+    ds.pop_back();
+
+    //NOT TAKE
+    sum=sum-arr[ind];
+    printSum(ind+1,ds,sum,k,arr);
+}
+
+int main(){
+    vector<int> arr{1,2,1};
+    int k=2;
+
+    vector<int> ds;
+    printSum(0,ds,0,k,arr);
+}
